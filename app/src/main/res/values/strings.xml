@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SWAPI</string>
+    <string name="url">Url: %1s</string>
+    <string name="height">Height: %1s</string>
+    <string name="mass">Mass: %1s</string>
+    <string name="vehicle_count">Vehicles: %1s</string>
+    <string name="not_applicable">N/A</string>
+
+    <string name="no_sort">None</string>
+    <string name="name_sort">Name</string>
+    <string name="height_sort">Height</string>
+    <string name="mass_sort">Mass</string>
+    <string name="vehicle_count_sort">Vehicles</string>
+</resources>
