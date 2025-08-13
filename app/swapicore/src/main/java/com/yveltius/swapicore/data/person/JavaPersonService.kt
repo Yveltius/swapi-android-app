@@ -10,14 +10,13 @@ internal class JavaPersonService : Service(httpClient = JavaHttpClient()), Perso
         return makeRequest(
             onFailureTag = "PersonServiceImpl",
             onFailureMessage = "Failed to get people.",
-            block = {
-                val result = httpClient
-                    .getJson(urlString = PersonService.PEOPLE_URI_STRING)
-                    .getOrThrow()
-                    .fromJsonString<List<Person>>()
+        ) {
+            val result = httpClient
+                .getJson(urlString = PersonService.PEOPLE_URI_STRING)
+                .getOrThrow()
+                .fromJsonString<List<Person>>()
 
-                result
-            }
-        )
+            result
+        }
     }
 }

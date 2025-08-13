@@ -11,10 +11,10 @@ internal open class Service(
 ) {
     suspend fun <T> makeRequest(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
-        block: suspend (scope: CoroutineScope) -> Result<T>,
+        measureExecutionTime: Boolean = true,
         onFailureTag: String,
         onFailureMessage: String,
-        measureExecutionTime: Boolean = true
+        block: suspend (scope: CoroutineScope) -> Result<T>,
     ): Result<T> {
         return withContext(dispatcher) {
             try {
