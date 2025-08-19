@@ -13,7 +13,7 @@ class Film(
     @SerialName("release_date") val releaseDate: String,
     @SerialName("characters") val characterUrls: List<String>,
     @SerialName("planets") val planetUrls: List<String>,
-    @SerialName("startships") val starshipUrls: List<String>,
+    @SerialName("starships") val starshipUrls: List<String>,
     @SerialName("vehicles") val vehicleUrls: List<String>,
     @SerialName("species") val speciesUrls: List<String>,
     val created: String,

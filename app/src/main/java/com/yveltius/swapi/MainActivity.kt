@@ -16,8 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.yveltius.swapi.films.FilmsScreen
 import com.yveltius.swapi.people.PeopleScreen
 import com.yveltius.swapi.ui.theme.SWAPITheme
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +31,29 @@ class MainActivity : ComponentActivity() {
             SWAPITheme {
                 NavHost(
                     navController = navController,
-                    startDestination = Destinations.Start.name
+                    startDestination = Start
                 ) {
-                    composable(route = Destinations.Start.name) {
-                        Greeting("Start Screen", onPeopleScreenSelected = {
-                            navController.navigate(Destinations.People.name)
-                        })
+                    composable<Start> { navBackStackEntry ->
+                        Greeting(
+                            "Start Screen",
+                            onPeopleScreenSelected = {
+                                navController.navigate(route = People)
+                            },
+                            onFilmScreenSelected = {
+                                navController.navigate(route = Films)
+                            })
                     }
 
-                    composable(route = Destinations.People.name) {
-                        PeopleScreen(modifier = Modifier.fillMaxSize(), onNavigateUp = { navController.navigateUp() })
+                    composable<People> {
+                        PeopleScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            onNavigateUp = { navController.navigateUp() })
+                    }
+
+                    composable<Films> {
+                        FilmsScreen(
+                            onNavigateUp = { navController.navigateUp() }
+                        )
                     }
                 }
             }
@@ -46,13 +61,23 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class Destinations {
-    Start,
-    People
-}
+@Serializable
+object Start
+
+@Serializable
+object People
+
+@Serializable
+object Films
+
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier, onPeopleScreenSelected: () -> Unit = {}) {
+fun Greeting(
+    name: String,
+    modifier: Modifier = Modifier,
+    onPeopleScreenSelected: () -> Unit = {},
+    onFilmScreenSelected: () -> Unit = {}
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -64,6 +89,10 @@ fun Greeting(name: String, modifier: Modifier = Modifier, onPeopleScreenSelected
         )
         Button(onClick = onPeopleScreenSelected) {
             Text(text = "People")
+        }
+
+        Button(onClick = onFilmScreenSelected) {
+            Text(text = "Films")
         }
     }
 }
