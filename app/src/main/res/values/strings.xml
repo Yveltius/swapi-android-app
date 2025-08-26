@@ -11,4 +11,10 @@
     <string name="height_sort">Height</string>
     <string name="mass_sort">Mass</string>
     <string name="vehicle_count_sort">Vehicles</string>
+
+    <string name="film_characters">Characters: %1$d</string>
+    <string name="film_planets">Planets: %1$d</string>
+    <string name="film_starships">Starships: %1$d</string>
+    <string name="film_vehicles">Vehicles: %1$d</string>
+    <string name="film_species">Species: %1$d</string>
 </resources>
