@@ -2,7 +2,7 @@ package com.yveltius.swapi.films
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yveltius.swapicore.domain.person.FilmsUseCase
+import com.yveltius.swapicore.domain.films.FilmsUseCase
 import com.yveltius.swapicore.entity.api.Film
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

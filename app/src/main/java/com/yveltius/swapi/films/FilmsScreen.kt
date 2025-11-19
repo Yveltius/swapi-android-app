@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -50,12 +52,7 @@ fun FilmsScreen(
                 title = { Text(text = "Films")},
                 navigationIcon = {
                     IconButton(onClick = onNavigateUp) {
-                        Icon(
-                            painter = painterResource(
-                                R.drawable.ic_launcher_foreground
-                            ),
-                            contentDescription = null
-                        )
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
                     }
                 })
         }
@@ -69,7 +66,7 @@ fun FilmsScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 itemsIndexed(uiState.films) { index, film ->
-                    FilmView(film = film, modifier = Modifier.fillMaxWidth())
+                    FilmView(film = film, modifier = Modifier.fillMaxWidth().padding(16.dp))
 
                     if (index < (uiState.films.size - 1)) {
                         HorizontalDivider(modifier = Modifier.fillMaxWidth())
@@ -85,29 +82,42 @@ fun FilmView(
     film: Film,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier.height(160.dp).padding(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Box(modifier = Modifier.fillMaxHeight()) {
-            Text(text = film.title, fontSize = 20.sp, modifier = Modifier.align(Alignment.Center))
+        Text(text = film.title, fontSize = 20.sp)
 
-            Text(text = film.url, fontSize = 10.sp, modifier = Modifier.align(Alignment.BottomStart))
-        }
-
-        Column(
-            modifier = Modifier.weight(0.4f),
-            horizontalAlignment = Alignment.End
+        Row(
+            modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = stringResource(R.string.film_characters, film.characterUrls.size))
-            Text(text = stringResource(R.string.film_planets, film.planetUrls.size))
-            Text(text = stringResource(R.string.film_starships, film.starshipUrls.size))
-            Text(text = stringResource(R.string.film_vehicles, film.vehicleUrls.size))
-            Text(text = stringResource(R.string.film_species, film.speciesUrls.size))
-        }
-    }
+            Column(
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(text = stringResource(R.string.film_characters, film.characterUrls.size))
+                Text(text = stringResource(R.string.film_species, film.speciesUrls.size))
+                Text(text = stringResource(R.string.film_planets, film.planetUrls.size))
+            }
 
+            Column(
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(text = stringResource(R.string.film_starships, film.starshipUrls.size))
+                Text(text = stringResource(R.string.film_vehicles, film.vehicleUrls.size))
+            }
+        }
+
+        Text(text = film.url, fontSize = 10.sp)
+    }
+}
+
+@Preview
+@Composable
+private fun ScreenPreview() {
+    FilmsScreen(
+        onNavigateUp = {},
+        modifier = Modifier.fillMaxSize(),
+    )
 }
 
 @Preview(showBackground = true)
@@ -130,5 +140,5 @@ private fun FilmViewPreview() {
         url = "https://www.thisisatodourl.com/endpoint"
     )
 
-    FilmView(film, modifier = Modifier.fillMaxWidth())
+    FilmView(film, modifier = Modifier.fillMaxWidth().padding(16.dp))
 }

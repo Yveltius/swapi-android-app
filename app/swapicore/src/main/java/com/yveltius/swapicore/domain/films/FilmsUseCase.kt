@@ -1,4 +1,4 @@
-package com.yveltius.swapicore.domain.person
+package com.yveltius.swapicore.domain.films
 
 import com.yveltius.swapicore.data.films.FilmService
 import com.yveltius.swapicore.data.films.JavaFilmService
