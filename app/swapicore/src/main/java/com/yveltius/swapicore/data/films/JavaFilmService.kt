@@ -8,6 +8,8 @@ import com.yveltius.swapicore.fromJsonString
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 
+private const val FILMS_URI_STRING = "https://swapi.info/api/films"
+
 internal class JavaFilmService : FilmService, Service(httpClient = JavaHttpClient()) {
     override suspend fun getFilms(): Result<List<Film>> {
         return makeRequest(
@@ -15,7 +17,7 @@ internal class JavaFilmService : FilmService, Service(httpClient = JavaHttpClien
             onFailureMessage = "Failed to get all films."
         ) {
             val result = httpClient
-                .getJson(urlString = FilmService.FILMS_URI_STRING)
+                .getJson(urlString = FILMS_URI_STRING)
                 .getOrThrow()
                 .fromJsonString<List<Film>>()
 

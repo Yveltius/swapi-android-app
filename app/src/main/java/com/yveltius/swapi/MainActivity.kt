@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yveltius.swapi.films.FilmsScreen
 import com.yveltius.swapi.people.PeopleScreen
+import com.yveltius.swapi.planets.PlanetsScreen
 import com.yveltius.swapi.ui.theme.SWAPITheme
 import kotlinx.serialization.Serializable
 
@@ -34,14 +35,18 @@ class MainActivity : ComponentActivity() {
                     startDestination = Start
                 ) {
                     composable<Start> { navBackStackEntry ->
-                        Greeting(
+                        OptionList(
                             "Start Screen",
                             onPeopleScreenSelected = {
                                 navController.navigate(route = People)
                             },
                             onFilmScreenSelected = {
                                 navController.navigate(route = Films)
-                            })
+                            },
+                            onPlanetsScreenSelected = {
+                                navController.navigate(route = Planets)
+                            }
+                        )
                     }
 
                     composable<People> {
@@ -52,6 +57,12 @@ class MainActivity : ComponentActivity() {
 
                     composable<Films> {
                         FilmsScreen(
+                            onNavigateUp = { navController.navigateUp() }
+                        )
+                    }
+
+                    composable<Planets> {
+                        PlanetsScreen(
                             onNavigateUp = { navController.navigateUp() }
                         )
                     }
@@ -70,13 +81,17 @@ object People
 @Serializable
 object Films
 
+@Serializable
+object Planets
+
 
 @Composable
-fun Greeting(
+fun OptionList(
     name: String,
     modifier: Modifier = Modifier,
     onPeopleScreenSelected: () -> Unit = {},
-    onFilmScreenSelected: () -> Unit = {}
+    onFilmScreenSelected: () -> Unit = {},
+    onPlanetsScreenSelected: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -94,6 +109,10 @@ fun Greeting(
         Button(onClick = onFilmScreenSelected) {
             Text(text = "Films")
         }
+
+        Button(onClick = onPlanetsScreenSelected) {
+            Text(text = "Planets")
+        }
     }
 }
 
@@ -101,6 +120,6 @@ fun Greeting(
 @Composable
 fun GreetingPreview() {
     SWAPITheme {
-        Greeting("Android")
+        OptionList("Android")
     }
 }

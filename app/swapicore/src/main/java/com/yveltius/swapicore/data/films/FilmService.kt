@@ -8,7 +8,6 @@ internal interface FilmService {
     suspend fun getFilmsForPerson(person: Person): Result<List<Film>>
 
     companion object {
-        const val FILMS_URI_STRING = "https://swapi.info/api/films"
 
         fun getInstance(): FilmService {
             return JavaFilmService()

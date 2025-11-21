@@ -23,7 +23,8 @@ internal open class Service(
                 val endTime = System.nanoTime()
 
                 if (measureExecutionTime) {
-                    println("Execution time: ${(endTime - startTime) / 1_000_000_000.0}")
+                    val elapsedTime = endTime - startTime
+                    println("Execution time: ${elapsedTime / 1_000_000_000.0}s -> ${elapsedTime}ns")
                 }
                 // log result
                 Result.success(result)
