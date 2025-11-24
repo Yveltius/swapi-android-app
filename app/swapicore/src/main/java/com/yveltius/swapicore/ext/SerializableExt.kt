@@ -1,6 +1,5 @@
-package com.yveltius.swapicore
+package com.yveltius.swapicore.ext
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 inline fun <reified T> String.fromJsonString(): Result<T> {

@@ -17,4 +17,18 @@
     <string name="film_starships">Starships: %1$d</string>
     <string name="film_vehicles">Vehicles: %1$d</string>
     <string name="film_species">Species: %1$d</string>
+
+    <!-- Buttons -->
+    <string name="retry">Retry</string>
+
+    <!-- People Screen -->
+    <string name="failed_to_get_people">Failed to get people.</string>
+
+    <!-- Film Screen -->
+    <string name="failed_to_get_films">Failed to get films.</string>
+
+    <!-- Planets Screen -->
+    <string name="failed_to_get_planets">Failed to get planets.</string>
+    <string name="planet_climate">Climate: %1$s</string>
+    <string name="planet_terrain">Terrain: %1$s</string>
 </resources>

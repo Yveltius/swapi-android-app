@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yveltius.swapicore.domain.person.PersonUseCase
 import com.yveltius.swapicore.entity.api.Person
-import com.yveltius.swapicore.finally
+import com.yveltius.swapicore.ext.finally
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

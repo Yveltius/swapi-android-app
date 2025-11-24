@@ -3,7 +3,7 @@ package com.yveltius.swapicore.data.person
 import com.yveltius.swapicore.data.Service
 import com.yveltius.swapicore.entity.api.Person
 import com.yveltius.swapicore.entity.http.JavaHttpClient
-import com.yveltius.swapicore.fromJsonString
+import com.yveltius.swapicore.ext.fromJsonString
 
 private const val PEOPLE_URI_STRING = "https://swapi.info/api/people"
 

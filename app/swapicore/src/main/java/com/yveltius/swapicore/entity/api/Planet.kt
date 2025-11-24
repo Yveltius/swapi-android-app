@@ -1,5 +1,6 @@
 package com.yveltius.swapicore.entity.api
 
+import com.yveltius.swapicore.ext.upperFirstChar
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,4 +20,16 @@ class Planet(
     val created: String,
     val edited: String,
     val url: String
-)
+) {
+    val formattedTerrain: String
+        get() = terrain
+            .split(',')
+            .map { it.trim() }
+            .joinToString { it.upperFirstChar() }
+
+    val formattedClimate: String
+        get() = climate
+            .split(',')
+            .map { it.trim() }
+            .joinToString { it.upperFirstChar() }
+}

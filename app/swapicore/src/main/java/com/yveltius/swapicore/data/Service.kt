@@ -24,7 +24,7 @@ internal open class Service(
 
                 if (measureExecutionTime) {
                     val elapsedTime = endTime - startTime
-                    println("Execution time: ${elapsedTime / 1_000_000_000.0}s -> ${elapsedTime}ns")
+                    println("Execution time: ${elapsedTime / 1_000_000.0}ms -> ${elapsedTime}ns")
                 }
                 // log result
                 Result.success(result)

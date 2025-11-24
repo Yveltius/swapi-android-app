@@ -20,11 +20,7 @@ class FilmsViewModel: ViewModel() {
     }
 
     private fun getFilms() {
-        _uiState.update {
-            it.copy(
-                isLoading = true
-            )
-        }
+        _uiState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch {
             filmsUseCase.getFilms()
@@ -49,5 +45,6 @@ class FilmsViewModel: ViewModel() {
     data class UiState(
         val films: List<Film> = listOf(),
         val isLoading: Boolean = false,
+        val hasError: Boolean = false
     )
 }

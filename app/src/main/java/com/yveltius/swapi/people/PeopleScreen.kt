@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yveltius.swapi.R
 import com.yveltius.swapicore.entity.api.Person
-import com.yveltius.swapicore.fromJsonString
+import com.yveltius.swapicore.ext.fromJsonString
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

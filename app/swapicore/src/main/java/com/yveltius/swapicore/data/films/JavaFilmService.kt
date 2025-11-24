@@ -4,7 +4,7 @@ import com.yveltius.swapicore.data.Service
 import com.yveltius.swapicore.entity.api.Film
 import com.yveltius.swapicore.entity.api.Person
 import com.yveltius.swapicore.entity.http.JavaHttpClient
-import com.yveltius.swapicore.fromJsonString
+import com.yveltius.swapicore.ext.fromJsonString
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 
@@ -35,16 +35,18 @@ internal class JavaFilmService : FilmService, Service(httpClient = JavaHttpClien
                     coroutineScope.async {
                         httpClient
                             .getJson(urlString = filmUrl)
-                            .getOrThrow()
-                            .fromJsonString<Film>()
-                            .getOrThrow()
+                            .getOrNull()
+                            ?.fromJsonString<Film>()
+                            ?.getOrThrow()
                     }
                 }.awaitAll()
 
-            // alternative - list with nullable type and have nulls for the failures?
+            if (result.any { it == null }) {
+                return@makeRequest Result.failure(Throwable("Failed to get all films for ${person.name}."))
+            }
 
-            // this requires all film calls to be successful in List
-            Result.success(result)
+            // linter really wants me to ensure no nulls are present
+            Result.success(result.filterNotNull())
         }
     }
 }

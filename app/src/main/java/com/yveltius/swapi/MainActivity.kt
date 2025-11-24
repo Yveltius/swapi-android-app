@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable<Start> { navBackStackEntry ->
                         OptionList(
-                            "Start Screen",
+                            modifier = Modifier.fillMaxSize(),
                             onPeopleScreenSelected = {
                                 navController.navigate(route = People)
                             },
@@ -87,21 +87,16 @@ object Planets
 
 @Composable
 fun OptionList(
-    name: String,
     modifier: Modifier = Modifier,
     onPeopleScreenSelected: () -> Unit = {},
     onFilmScreenSelected: () -> Unit = {},
     onPlanetsScreenSelected: () -> Unit = {}
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
         Button(onClick = onPeopleScreenSelected) {
             Text(text = "People")
         }
@@ -120,6 +115,6 @@ fun OptionList(
 @Composable
 fun GreetingPreview() {
     SWAPITheme {
-        OptionList("Android")
+        OptionList()
     }
 }

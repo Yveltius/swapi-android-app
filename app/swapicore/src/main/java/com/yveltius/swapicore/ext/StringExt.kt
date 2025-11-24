@@ -1,4 +1,4 @@
-package com.yveltius.swapi.ext
+package com.yveltius.swapicore.ext
 
 fun String.upperFirstChar(): String {
     return if (this.isNotEmpty() && this.first().isLetter() && this.first().isLowerCase()) {
